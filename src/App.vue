@@ -1,15 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-link to="/microMain">Home</router-link> |
+  <router-link to="/microChild">子应用</router-link>
+  <div>
+    <router-view></router-view>
+    <!-- 子应用渲染的div -->
+    <div id="microContainer"></div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
   }
 }
 </script>
