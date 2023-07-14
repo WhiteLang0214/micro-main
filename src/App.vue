@@ -1,18 +1,25 @@
 <template>
-  <router-link to="/microMain">Home</router-link> |
-  <router-link to="/microChild">子应用</router-link>
-  <div>
-    <router-view></router-view>
-    <!-- 子应用渲染的div -->
-    <div id="microContainer"></div>
-  </div>
+  <el-container class="layout-container">
+    <el-header>Header</el-header>
+    <el-container>
+      <el-aside width="200px">
+        <Menu />
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+        <!-- 子应用渲染的div -->
+        <div id="microContainer"></div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
-
+import Menu from "./pages/menu.vue"
 export default {
   name: 'App',
   components: {
+    Menu
   }
 }
 </script>
@@ -24,6 +31,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+}
+
+.layout-container {
+  height: 100%;
+}
+
+.layout-container .el-menu {
+  height: 100%;
 }
 </style>

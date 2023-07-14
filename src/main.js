@@ -4,6 +4,10 @@ import {
   createRouter, 
   createWebHistory
 } from 'vue-router';
+import ElementPlus from "element-plus";
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import "./assets/reset.css";
 
 /***************************/
 import microApp from "./microRegister"
@@ -14,14 +18,29 @@ start(); //启动qiankun
 
 const router = createRouter({
   history: createWebHistory(),
-  base: window.__POWERED_BY_QIANKUN__ ? '/microMain' : '/',
+  base: "/microMain", // window.__POWERED_BY_QIANKUN__ ? '/microMain' : '/',
   routes: [
     {
       path: "/microMain",
-      name: 'microMain',
-      component: () => import("./pages/home.vue")
+      children: [
+        {
+          path: "setting",
+          name: 'setting',
+          component: () => import("./pages/setting.vue")
+        },
+        {
+          path: "about",
+          name: 'about',
+          component: () => import("./pages/about.vue")
+        }
+      ]
     }
   ]
 })
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App);
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+app.use(router).use(ElementPlus).mount('#app')
