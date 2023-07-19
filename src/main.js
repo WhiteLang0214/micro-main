@@ -13,7 +13,11 @@ import "./assets/reset.css";
 import microApp from "./microRegister"
 import { registerMicroApps, start } from 'qiankun';
 registerMicroApps(microApp); //注册子应用
-start(); //启动qiankun
+start({
+  sandbox: {
+    experimentalStyleIsolation: true
+  }
+}); //启动qiankun
 /***************************/
 
 const router = createRouter({
