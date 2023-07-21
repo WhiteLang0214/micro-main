@@ -8,13 +8,26 @@
     @select="handleSelect"
   >
   <div class="layout-box"></div>
+    <el-menu-item index="/microMain/home">
+      <template #title>
+        <el-icon><location /></el-icon>
+        <span>首页</span>
+      </template>
+    </el-menu-item>
     <el-sub-menu index="1">
       <template #title>
         <el-icon><location /></el-icon>
         <span>子应用</span>
       </template>
-      <el-menu-item index="/microChild/home">子应用home</el-menu-item>
-      <el-menu-item index="/microChild/about">子应用about</el-menu-item>
+      <el-menu-item index="/microChild/module/microChild/home">子应用home</el-menu-item>
+      <el-menu-item index="/portal/microChild/about">子应用about</el-menu-item>
+    </el-sub-menu>
+    <el-sub-menu index="2">
+      <template #title>
+        <el-icon><location /></el-icon>
+        <span>子应用embp-vweb</span>
+      </template>
+      <el-menu-item index="/microEmbpVweb/wel/home">子应用home</el-menu-item>
     </el-sub-menu>
     <el-menu-item index="/microMain/setting">
       <el-icon><Menu /></el-icon>
@@ -39,8 +52,7 @@ const isCollapse = ref(false);
 const handleOpen = () => {};
 const handleClose = () => {};
 
-const handleSelect = (index, indexPath, item, routeResult) => {
-  console.log(index, indexPath, item, routeResult)
+const handleSelect = (index) => {
   router.push(index)
 };
 

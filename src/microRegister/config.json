@@ -1,6 +1,7 @@
 {
   "development": {
-    "MICRO_BIBP_VWEB": "http://localhost:8082"
+    "MICRO_BIBP_VWEB": "http://localhost:8082",
+    "MICRO_EMBP_VWEB": "http://localhost:8082"
   },
   "k8s": {
     "MICRO_BIBP_VWEB": "//testnewbi.leandc.cn:5173/"

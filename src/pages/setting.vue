@@ -1,3 +1,3 @@
 <template>
-  设置
+  <div id="setting">设置</div>
 </template>
