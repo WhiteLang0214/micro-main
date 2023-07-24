@@ -1,47 +1,44 @@
 import { createRouter, createWebHistory } from "vue-router"
 
+const base = process.env.VUE_APP_BASE_URL;
+
 const routes = [
   {
-    path: "",
-    redirect: "/microMain/login"
+    path: "/",
+    redirect: "/login"
   },
   {
-    path: "/microMain/login",
+    path: "/login",
     name: 'login',
     component: () => import("@/pages/login.vue")
   },
   {
-    path: "/microMain",
+    path: "/home",
+    name: 'home',
+    component: () => import("@/pages/layout.vue"),
     children: [
       {
-        path: "home",
-        name: 'home',
-        component: () => import("@/pages/home.vue"),
-        children: [
-          {
-            path: "/microMain/setting",
-            name: 'setting',
-            component: () => import("@/pages/setting.vue")
-          },
-          {
-            path: "/microMain/about",
-            name: 'about',
-            component: () => import("@/pages/about.vue")
-          },
-          {
-            path: "/module/*",
-            name: 'module',
-            component: () => import("@/pages/module.vue")
-          }
-        ]
+        path: base + "/setting",
+        name: 'setting',
+        component: () => import("@/pages/setting.vue")
+      },
+      {
+        path: base + "/about",
+        name: 'about',
+        component: () => import("@/pages/about.vue")
       },
     ]
-  }
+  },
+  {
+    path: '/portal/*',
+    name: 'portal',
+    component: () => import('@/pages/portal.vue'),
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  base: "/microMain", // window.__POWERED_BY_QIANKUN__ ? '/microMain' : '/',
+  base,
   routes
 })
 

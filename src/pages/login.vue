@@ -19,6 +19,7 @@
         <el-button type="primary" @click="submitForm(ruleFormRef)">
           登录
         </el-button>
+        <button></button>
       </el-form-item>
     </el-form>
   </div>
@@ -51,7 +52,7 @@ const rules = reactive({
 
 const submitForm = async (formEl) => {
   if (!formEl) return;
-  router.replace("/microMain/home")
+  router.replace("/home")
   // await formEl.validate((valid) => {
   //   if (valid) {
   //     console.log("submit");

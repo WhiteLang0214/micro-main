@@ -19,15 +19,9 @@
         <el-icon><location /></el-icon>
         <span>子应用</span>
       </template>
-      <el-menu-item index="/microChild/module/microChild/home">子应用home</el-menu-item>
-      <el-menu-item index="/portal/microChild/about">子应用about</el-menu-item>
-    </el-sub-menu>
-    <el-sub-menu index="2">
-      <template #title>
-        <el-icon><location /></el-icon>
-        <span>子应用embp-vweb</span>
-      </template>
-      <el-menu-item index="/microEmbpVweb/wel/home">子应用home</el-menu-item>
+      <!-- <el-menu-item index="/home/microChild/home">根路径下的子应用login</el-menu-item> -->
+      <el-menu-item index="/portal/microChild/about">home下的子应用about</el-menu-item>
+
     </el-sub-menu>
     <el-menu-item index="/microMain/setting">
       <el-icon><Menu /></el-icon>

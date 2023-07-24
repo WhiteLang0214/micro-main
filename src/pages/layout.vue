@@ -12,8 +12,9 @@
   </el-container>
 </template>
 
-<script setup name="Home">
+<script setup name="Layout">
 import Menu from "./menu.vue"
+
 </script>
 
 <style scoped>

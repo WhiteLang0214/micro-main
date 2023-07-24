@@ -1,7 +1,8 @@
 import store from "./store";
 /***************************/
 import microApp from "./microRegister"
-import { registerMicroApps, start, initGlobalState, addGlobalUncaughtErrorHandler } from 'qiankun';
+import { registerMicroApps, initGlobalState, addGlobalUncaughtErrorHandler, start } from 'qiankun';
+
 registerMicroApps(microApp, {
   beforeLoad: (app) => {
     console.log("qiankun 微应用加载前----", app)
@@ -14,15 +15,9 @@ registerMicroApps(microApp, {
 }); //注册子应用
 
 
-addGlobalUncaughtErrorHandler(() => {
-  console.log("加载失败--=------")
+addGlobalUncaughtErrorHandler((event) => {
+  console.log("全局异常捕获加载失败--=------", event)
 })
-
-start({
-  sandbox: {
-    experimentalStyleIsolation: true
-  }
-}); //启动qiankun
 
 // 初始化state
 const actions = initGlobalState(store);
@@ -35,3 +30,12 @@ setTimeout(() => {
 }, 1000)
 actions.offGlobalStateChange();
 /***************************/
+
+
+export default function() {
+  start({
+    sandbox: {
+      experimentalStyleIsolation: true
+    }
+  }); //启动qiankun
+}

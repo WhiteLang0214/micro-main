@@ -1,13 +1,13 @@
 <template>
-  <router-view />
+  <router-view></router-view>
 </template>
 
-<script>
+<script setup>
 
 </script>
 
 <style>
-#app {
+#MainApp {
   height: 100vh;
 }
 </style>
