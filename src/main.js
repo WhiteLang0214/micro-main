@@ -2,10 +2,16 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from "element-plus";
 import 'element-plus/dist/index.css'
+// import "@/assets/element.scss"; // 重设主题色
+import "@/assets/element.css"; // 重设主题色
+import { useCssVar } from "@vueuse/core"
+console.log("useCssVar", useCssVar)
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./assets/reset.css";
 import store from "./store";
 import { router } from "./router";
+
 /****注册子应用*****/
 import microApp from "./microRegister"
 import { registerMicroApps } from 'qiankun';
@@ -17,7 +23,9 @@ const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-app.use(router).use(store).use(ElementPlus).mount('#MainApp')
+app.use(router).use(store).use(ElementPlus, {
+  locale: zhCn
+}).mount('#MainApp')
 
 
 

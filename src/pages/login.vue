@@ -1,5 +1,9 @@
 <template>
   <div id="login">
+    <el-color-picker
+      v-model="color"
+      @change="changeColor"
+    />
     <el-form
       ref="ruleFormRef"
       :model="ruleForm"
@@ -27,17 +31,18 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-// import { ElMessage } from 'element-plus';
 import { useRouter } from 'vue-router';
+import { post } from "@/axios";
 
 const router = useRouter();
 
 const ruleFormRef = ref("");
 const formSize = ref("default");
+const color = ref('#3b9ce0');
 
 const ruleForm = reactive({
-  name: "",
-  pwd: ""
+  name: "13116060177",
+  pwd: "111111"
 })
 
 const rules = reactive({
@@ -50,16 +55,30 @@ const rules = reactive({
   ]
 })
 
+const login = () => {
+  const name = ruleForm.name, pwd = ruleForm.pwd;
+  post(`/serve/doLogin?name=${name}&pwd=${pwd}`, {
+    name,
+    pwd
+  }).then(() => {
+    router.replace("/microMain/home")
+  })
+}
+
 const submitForm = async (formEl) => {
   if (!formEl) return;
-  router.replace("/microMain/home")
-  // await formEl.validate((valid) => {
-  //   if (valid) {
-  //     console.log("submit");
-  //     router.replace("/microMain/home")
-  //   } else {
-  //     ElMessage.error("请输入正确的用户名和密码");
-  //   }
-  // })
+  // router.replace("/microMain/home")
+  await formEl.validate((valid) => {
+    console.log("valid---", valid)
+    if (valid) {
+      login()
+    } else {
+      // ElMessage.error("请输入正确的用户名和密码");
+    }
+  })
+}
+
+const changeColor = (val) => {
+  console.log('val---', val)
 }
 </script>
