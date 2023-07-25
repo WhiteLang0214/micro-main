@@ -52,7 +52,7 @@ const rules = reactive({
 
 const submitForm = async (formEl) => {
   if (!formEl) return;
-  router.replace("/home")
+  router.replace("/microMain/home")
   // await formEl.validate((valid) => {
   //   if (valid) {
   //     console.log("submit");

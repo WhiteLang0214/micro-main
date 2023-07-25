@@ -19,9 +19,9 @@
         <el-icon><location /></el-icon>
         <span>子应用</span>
       </template>
-      <!-- <el-menu-item index="/home/microChild/home">根路径下的子应用login</el-menu-item> -->
-      <el-menu-item index="/portal/microChild/about">home下的子应用about</el-menu-item>
-
+      <el-menu-item index="/microChild/home">子应用home</el-menu-item>
+      <el-menu-item index="/microChild/about">子应用about</el-menu-item>
+      <el-menu-item index="/microChild/setting">setting</el-menu-item>
     </el-sub-menu>
     <el-menu-item index="/microMain/setting">
       <el-icon><Menu /></el-icon>

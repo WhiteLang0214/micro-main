@@ -1,6 +1,6 @@
 {
   "development": {
-    "MICRO_BIBP_VWEB": "//localhost:8082",
+    "MICRO_CHILD": "//localhost:8082",
     "MICRO_EMBP_VWEB": "http://localhost:8082"
   },
   "k8s": {

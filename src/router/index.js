@@ -5,15 +5,15 @@ const base = process.env.VUE_APP_BASE_URL;
 const routes = [
   {
     path: "/",
-    redirect: "/login"
+    redirect: base + "/login"
   },
   {
-    path: "/login",
+    path: base + "/login",
     name: 'login',
     component: () => import("@/pages/login.vue")
   },
   {
-    path: "/home",
+    path: base + "/home",
     name: 'home',
     component: () => import("@/pages/layout.vue"),
     children: [
@@ -30,9 +30,9 @@ const routes = [
     ]
   },
   {
-    path: '/portal/*',
-    name: 'portal',
-    component: () => import('@/pages/portal.vue'),
+    path: '/microChild/:pathMatch(.*)',
+    name: '子应用的渲染页面',
+    component: () => import('@/pages/layout.vue'),
   },
 ]
 
