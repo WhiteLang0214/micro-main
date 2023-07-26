@@ -1,5 +1,8 @@
 export const getters = {
   getToken: (state) => {
-    return state.loginType;
+    return state.token;
   },
+  getLoginInfo(state) {
+    return state.loginInfo
+  }
 }

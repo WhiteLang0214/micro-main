@@ -4,19 +4,14 @@ import ElementPlus from "element-plus";
 import 'element-plus/dist/index.css'
 // import "@/assets/element.scss"; // 重设主题色
 import "@/assets/element.css"; // 重设主题色
-import { useCssVar } from "@vueuse/core"
-console.log("useCssVar", useCssVar)
+// import { useCssVar } from "@vueuse/core"
+// console.log("useCssVar", useCssVar)
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./assets/reset.css";
 import store from "./store";
 import { router } from "./router";
-
-/****注册子应用*****/
-import microApp from "./microRegister"
-import { registerMicroApps } from 'qiankun';
-registerMicroApps(microApp)
-/****注册子应用*****/
+import "@/qiankun/registerApp";
 
 const app = createApp(App);
 // 注册element-icons

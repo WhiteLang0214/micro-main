@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout-container">
-    <el-header>Header</el-header>
+    <el-header>Header {{ getUsername }}</el-header>
     <el-container>
       <el-aside width="200px">
         <Menu />
@@ -16,15 +16,28 @@
 
 <script setup name="Layout">
 
-import { onMounted, onUnmounted } from 'vue';
-import startQiankun from "@/startQiankun";
+import { computed, onMounted, onUnmounted } from 'vue';
+import { useStore } from 'vuex';
+import startQiankun from "@/qiankun/start";
 import Menu from "./menu.vue"
+import { qiankunSetGlobalState } from "@/utils/qiankunActions";
+
+const store = useStore();
+
+const getUsername = computed(() => store.getters.getLoginInfo.username)
 
 onMounted(() => {
   if (!window.qiankunStarted) {
     window.qiankunStarted = true
     startQiankun()
   }
+
+
+  setTimeout(() => {
+    qiankunSetGlobalState({
+      isLogin: true
+    })
+  }, 1000)
 })
 
 onUnmounted(() => {
