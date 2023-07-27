@@ -5,34 +5,29 @@
 <script setup>
 import { onMounted } from "vue";
 import { useStore } from "vuex";
-import { useRouter } from "vue-router";
 
 const store = useStore();
-const router = useRouter();
-
-const beforeunload = () => {
-  window.addEventListener('beforeunload', resetSessionData)
-}
 
 // 存储 vuex 数据，防止刷新丢失
 const resetSessionData = () => {
-  const sessionStoreData = JSON.parse(sessionStorage.getItem("store") || "{}");
-    if (!Object.keys(sessionStoreData).length) {
-      clearSession();
-      router.replace("/microMain/login");
-    } else {
-      sessionStorage.getItem("store") && store.replaceState(Object.assign({}, store.state, sessionStoreData))
-    }
-}
+  const sessionLoginInfo = sessionStorage.getItem("loginInfo");
 
-// 清空sesstion
-const clearSession = () => {
-  sessionStorage.clear();
-}
+  if (sessionLoginInfo) {
+    store.replaceState(
+      Object.assign({}, store.state, {
+        loginInfo: JSON.parse(sessionLoginInfo),
+      })
+    );
+  }
+
+  window.addEventListener("beforeunload", () => {
+    sessionStorage.setItem("loginInfo", JSON.stringify(store.state.loginInfo));
+  });
+};
 
 onMounted(() => {
-  beforeunload()
-})
+  resetSessionData();
+});
 </script>
 
 <style>

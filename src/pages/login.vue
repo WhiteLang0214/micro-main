@@ -73,15 +73,14 @@ const saveLoginInfo = () => {
     username: "lx",
     phone: "13116060177",
   };
-  console.log("loginInfo---", loginInfo, 'actions----', actions)
   store.commit("SAVE_TOKEN", "token");
   store.commit("SAVE_LOGIN_INFO", loginInfo);
-  sessionStorage.setItem("token", 'token');
-  sessionStorage.setItem("store", JSON.stringify(loginInfo));
+  sessionStorage.setItem("token", "token");
+  sessionStorage.setItem("loginInfo", JSON.stringify(loginInfo));
   // 更新全局状态，为了给微应用使用
   actions.setGlobalState({
     token: "token",
-    loginInfo
+    loginInfo,
   });
 };
 
