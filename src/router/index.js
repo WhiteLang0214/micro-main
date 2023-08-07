@@ -34,6 +34,11 @@ const routes = [
     name: '子应用的渲染页面',
     component: () => import('@/pages/layout.vue'),
   },
+  {
+    path: '/microCibp/:pathMatch(.*)',
+    name: '任务管理渲染页面',
+    component: () => import('@/pages/layout.vue'),
+  },
 ]
 
 const router = createRouter({
