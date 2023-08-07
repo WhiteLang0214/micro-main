@@ -57,9 +57,7 @@ const login = () => {
       name,
       pwd
     }).then(() => {
-      setTimeout(() => {
         router.replace("/microMain/home");
-      }, 1000)
     }).catch(() => {})
   // post(`/serve/doLogin?name=${name}&pwd=${pwd}`, {
   //   name,

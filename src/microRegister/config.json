@@ -1,7 +1,8 @@
 {
   "development": {
     "MICRO_CHILD": "//localhost:8083",
-    "MICRO_CIBP_VWEB": "//cilocal.leandc.cn:8082"
+    "MICRO_CIBP_VWEB": "//cilocal.leandc.cn:8082",
+    "MICRO_USER_CENTER": "//local.leandc.cn:8083"
   },
   "k8s": {
     "MICRO_BIBP_VWEB": "//testnewbi.leandc.cn:5173/"

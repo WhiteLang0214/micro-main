@@ -35,8 +35,8 @@ const routes = [
     component: () => import('@/pages/layout.vue'),
   },
   {
-    path: '/microCibp/:pathMatch(.*)',
-    name: '任务管理渲染页面',
+    path: '/microUserCenter/:pathMatch(.*)',
+    name: '用户中心渲染页面',
     component: () => import('@/pages/layout.vue'),
   },
 ]
