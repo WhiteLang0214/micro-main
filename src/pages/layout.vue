@@ -5,10 +5,10 @@
       <el-aside width="200px">
         <Menu />
       </el-aside>
-      <el-main>
+      <el-main class="layout-main">
         <router-view></router-view>
         <!-- 子应用渲染容器 -->
-        <section id="microContainer"></section>
+        <section id="microContainer" style="height: 100%;"></section>
       </el-main>
     </el-container>
   </el-container>
@@ -22,7 +22,7 @@ import Menu from "./menu.vue";
 
 const store = useStore();
 
-const getUsername = computed(() => store.getters.getLoginInfo.username);
+const getUsername = computed(() => JSON.parse(store.getters.getLoginInfo).loginUserInfo?.name);
 
 onMounted(() => {
   if (!window.qiankunStarted) {
@@ -43,5 +43,9 @@ onUnmounted(() => {
 
 .layout-container .el-menu {
   height: 100%;
+}
+
+.layout-main {
+  padding: 0;
 }
 </style>
