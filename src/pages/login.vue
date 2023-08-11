@@ -42,7 +42,7 @@ const color = ref("#3b9ce0");
 
 const ruleForm = reactive({
   name: "13116060177",
-  pwd: "654321",
+  pwd: "123456",
 });
 
 const rules = reactive({
