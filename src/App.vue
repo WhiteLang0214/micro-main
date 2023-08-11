@@ -10,18 +10,18 @@ const store = useStore();
 
 // 存储 vuex 数据，防止刷新丢失
 const resetSessionData = () => {
-  const sessionLoginInfo = sessionStorage.getItem("loginInfo");
+  const sessionLoginInfo = sessionStorage.getItem("microMain_login_info");
 
   if (sessionLoginInfo) {
     store.replaceState(
       Object.assign({}, store.state, {
-        loginInfo: JSON.parse(sessionLoginInfo),
+        microMain_login_info: JSON.parse(sessionLoginInfo),
       })
     );
   }
 
   window.addEventListener("beforeunload", () => {
-    sessionStorage.setItem("loginInfo", JSON.stringify(store.state.loginInfo));
+    sessionStorage.setItem("microMain_login_info", JSON.stringify(store.state.loginInfo));
   });
 };
 
