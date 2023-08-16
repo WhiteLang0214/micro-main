@@ -14,5 +14,15 @@ module.exports = {
         runtimeErrors: true,
       },
     },
+    proxy: {
+      // Swagger
+      ["/microUserCenter/api"]: {
+        changeOrigin: true,
+        target: "http://devuser.leandc.cn/api",
+        pathRewrite: {
+          ['^' + "/microUserCenter/api"]: '',
+        },
+      },
+    },
   },
 }
