@@ -32,7 +32,7 @@
     </el-menu-item>
     <el-menu-item index="/microUserCenter/microApp">用户中心microApp</el-menu-item>
     <template v-for="item in menuData" :key="item.id">
-      <SubMenu :item="item"></SubMenu>
+      <SubMenu :item="item" />
     </template>
     
   </el-menu>
@@ -46,7 +46,8 @@ import { useStore } from 'vuex'
 import { ucMenuPc } from "@/api/login"
 import SubMenu from "@/components/menu/sub-menu.vue"
 
-const VUE_APP_UC_MICRO = process.env.VUE_APP_UC_MICRO
+const VUE_APP_MICRO_UC = process.env.VUE_APP_MICRO_UC;
+const VUE_APP_MICRO_BI = process.env.VUE_APP_MICRO_BI;
 const router = useRouter();
 const store = useStore();
 
@@ -57,9 +58,12 @@ const handleOpen = () => {};
 const handleClose = () => {};
 
 const handleSelect = (index) => {
-  const path = VUE_APP_UC_MICRO + index; // "/microApp";
+  const path = VUE_APP_MICRO_UC + index; // "/microApp";
+  const biPath = VUE_APP_MICRO_BI + '/' +index;
   if (index.indexOf("/uc") > -1) { // 用户中心
     router.push(path)
+  } else if (index.indexOf("bi") > -1 || index.indexOf("wkf") > -1) {
+    router.push(biPath)
   } else {
     router.push(index)
   }
@@ -67,10 +71,9 @@ const handleSelect = (index) => {
 
 // 获取用户中心菜单
 const getMenu = () => {
-  ucMenuPc(["UC200","UC100"]).then(res => {
+  ucMenuPc(["UC200","UC100", "bi000", "CI000"]).then(res => {
     const { info } = res || {};
     menuData.value = info?.menus || [];
-    console.log("info login----", info)
     store.commit("SAVE_LOGIN_INFO", JSON.stringify(info))
     sessionStorage.setItem("microMain_login_info", JSON.stringify(info))
   }).catch(() => {})
