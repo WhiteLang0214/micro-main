@@ -3,6 +3,7 @@ import { start } from "qiankun";
 export default function () {
   start({
     sandbox: {
+      // strictStyleIsolation: true, // 开启严格的样式隔离模式 这样子应用会找不到dom
       experimentalStyleIsolation: true
     },
     async fetch(url, ...args) {

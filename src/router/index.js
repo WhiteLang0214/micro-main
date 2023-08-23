@@ -39,6 +39,11 @@ const routes = [
     name: '用户中心渲染页面',
     component: () => import('@/pages/layout.vue'),
   },
+  {
+    path: '/microBi/:pathMatch(.*)',
+    name: 'bi渲染页面',
+    component: () => import('@/pages/layout.vue'),
+  },
 ]
 
 const router = createRouter({
