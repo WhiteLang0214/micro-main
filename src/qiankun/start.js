@@ -15,6 +15,12 @@ export default function () {
             return ""
           }
         }
+      } else if (url === config["MICRO_EMBP_VWEB"] + "/echarts.min.js") {
+        return {
+          async text() {
+            return ""
+          }
+        }
       }
       return window.fetch(url, ...args);
     },

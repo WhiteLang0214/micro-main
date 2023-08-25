@@ -5,7 +5,6 @@
     :collapse="isCollapse"
     @open="handleOpen"
     @close="handleClose"
-    @select="handleSelect"
   >
     <el-menu-item index="/microMain/home">
       <template #title>
@@ -22,7 +21,7 @@
       <el-menu-item index="/microChild/about">子应用about</el-menu-item>
       <el-menu-item index="/microChild/setting">setting</el-menu-item>
     </el-sub-menu>
-    <el-menu-item index="/microMain/setting">
+    <el-menu-item index="/microMain/setting" @click="clickMenu('/microMain/setting')">
       <el-icon><Menu /></el-icon>
       <template #title>设置</template>
     </el-menu-item>
@@ -34,49 +33,37 @@
     <template v-for="item in menuData" :key="item.id">
       <SubMenu :item="item" />
     </template>
-    
   </el-menu>
 </template>
 
 <script lang="js" setup>
 
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ucMenuPc } from "@/api/login"
 import SubMenu from "@/components/menu/sub-menu.vue"
+import { useRouter } from 'vue-router'
 
-const VUE_APP_MICRO_UC = process.env.VUE_APP_MICRO_UC;
-const VUE_APP_MICRO_BI = process.env.VUE_APP_MICRO_BI;
-const router = useRouter();
 const store = useStore();
-
+const router = useRouter();
 const isCollapse = ref(false);
 let menuData = ref([]);
 
 const handleOpen = () => {};
 const handleClose = () => {};
 
-const handleSelect = (index) => {
-  const ucPath = VUE_APP_MICRO_UC + index; // "/microApp";
-  const biPath = VUE_APP_MICRO_BI + '/' +index;
-  if (index.indexOf("/uc") > -1) { // 用户中心
-    router.push(ucPath)
-  } else if (index.indexOf("bi") > -1 || index.indexOf("wkf") > -1) {
-    router.push(biPath)
-  } else {
-    router.push(index)
-  }
-};
-
 // 获取用户中心菜单
 const getMenu = () => {
-  ucMenuPc(["UC200","UC100", "bi000", "CI000"]).then(res => {
+  ucMenuPc(["UC200","UC100", "bi000", "CI000", "M02"]).then(res => {
     const { info } = res || {};
     menuData.value = info?.menus || [];
     store.commit("SAVE_LOGIN_INFO", JSON.stringify(info))
     sessionStorage.setItem("microMain_login_info", JSON.stringify(info))
   }).catch(() => {})
+}
+
+const clickMenu = (path) => {
+  router.push(path)
 }
 
 onMounted(() => {
