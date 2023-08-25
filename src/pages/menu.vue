@@ -58,10 +58,10 @@ const handleOpen = () => {};
 const handleClose = () => {};
 
 const handleSelect = (index) => {
-  const path = VUE_APP_MICRO_UC + index; // "/microApp";
+  const ucPath = VUE_APP_MICRO_UC + index; // "/microApp";
   const biPath = VUE_APP_MICRO_BI + '/' +index;
   if (index.indexOf("/uc") > -1) { // 用户中心
-    router.push(path)
+    router.push(ucPath)
   } else if (index.indexOf("bi") > -1 || index.indexOf("wkf") > -1) {
     router.push(biPath)
   } else {
