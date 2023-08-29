@@ -8,6 +8,10 @@ const routes = [
     redirect: base + "/login"
   },
   {
+    path: base,
+    redirect: base + "/login"
+  },
+  {
     path: base + "/login",
     name: 'login',
     component: () => import("@/pages/login.vue")
@@ -42,6 +46,11 @@ const routes = [
   {
     path: '/microBi/:pathMatch(.*)',
     name: 'bi渲染页面',
+    component: () => import('@/pages/layout.vue'),
+  },
+  {
+    path: '/microEmbpVweb/:pathMatch(.*)',
+    name: 'embpVweb渲染页面',
     component: () => import('@/pages/layout.vue'),
   },
 ]

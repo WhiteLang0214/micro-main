@@ -4,7 +4,6 @@ const ENV = process.env.NODE_ENV || 'development'// 使用 NODE_ENV 区分不同
 const config = envConfig[ENV]
 const {  MICRO_USER_CENTER, MICRO_Bi, MICRO_EMBP_VWEB } = config
 import store from "@/store"
-
 const microAppConfig = [
   // {
   //   name: 'microChild', // 唯一性，可用微应用的名称
@@ -22,6 +21,7 @@ const microAppConfig = [
     activeRule: '/microUserCenter',
     props: {
       store,
+      echarts: window.echarts
     }
   },
   {
@@ -31,6 +31,7 @@ const microAppConfig = [
     activeRule: '/microBi',
     props: {
       store,
+      echarts: window.echarts
     }
   },
   {
@@ -40,6 +41,7 @@ const microAppConfig = [
     activeRule: '/microEmbpVweb',
     props: {
       store,
+      echarts: window.echarts
     }
   },
 ];
