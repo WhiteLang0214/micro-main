@@ -49,7 +49,7 @@ const getPageRangeTime = () => {
 }
 
 const handlePageHide = () => {
-  sessionStorage.setItem("store", JSON.stringify(this.$store.state));
+  sessionStorage.setItem("store", JSON.stringify(store.state));
 }
 
 const handlePopstate = (ele) => {
