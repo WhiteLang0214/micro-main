@@ -1,6 +1,7 @@
 <template>
   <el-menu
-    default-active="2"
+    :default-active="defaultActive"
+    :default-openeds="[defaultActive]"
     class="layout-menu"
     :collapse="isCollapse"
     @open="handleOpen"
@@ -42,10 +43,11 @@ import { onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { ucMenuPc } from "@/api/login"
 import SubMenu from "@/components/menu/sub-menu.vue"
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const store = useStore();
 const router = useRouter();
+const route = useRoute();
 const isCollapse = ref(false);
 let menuData = ref([]);
 
@@ -65,6 +67,8 @@ const getMenu = () => {
 const clickMenu = (path) => {
   router.push(path)
 }
+
+const defaultActive = route.fullPath;
 
 onMounted(() => {
   setTimeout(() => {

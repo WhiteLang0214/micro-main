@@ -64,7 +64,6 @@ const handlePopstate = (ele) => {
 
 const handleVisibilitychange = () => {
   const visibilityState = document.visibilityState;
-  console.log("handleVisibilitychange-----", route)
   const routePathName = route.name || route.fullPath;
   if (routePathName.indexOf("login") == -1) {
     if (visibilityState === "visible") {

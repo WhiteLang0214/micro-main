@@ -1,6 +1,6 @@
 <template>
   <el-menu-item
-    :index="menuItem?.menuPath"
+    :index="setMenuIndex(menuItem)"
     :item="menuItem"
     @click="handleClickMenu(menuItem)">
     {{ menuItem?.name }}
@@ -23,6 +23,24 @@ const props = defineProps({
 })
 
 const menuItem = shallowRef(props.menuItemData)
+
+const setMenuIndex = (data) => {
+  const { menuPath, id } = data;
+  let basePath = "";
+  const ucPath = VUE_APP_MICRO_UC + menuPath;
+  const biPath = VUE_APP_MICRO_BI + '/' + menuPath;
+  const embpPath = VUE_APP_MICRO_EMBP + menuPath;
+  if (id.indexOf("UC") > -1) { // 用户中心
+    basePath = ucPath;
+  } else if (id.indexOf("bi") > -1 || id.indexOf("wkf") > -1 || id.indexOf("CI") > -1) {
+    basePath = biPath;
+  } else if (id.indexOf("M0") > -1) {
+    basePath = embpPath;
+  } else {
+    basePath = menuPath;
+  } 
+  return basePath;
+}
 
 const handleClickMenu = (data) => {
   console.log("handleClickMenu---", data)
