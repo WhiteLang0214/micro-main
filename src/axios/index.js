@@ -45,6 +45,7 @@ function getUrlType(url) {
 // 跳转登录页面
 function redirectLogin() {
   window.location.href = BASE_URL + "/login"
+  sessionStorage.clear()
 }
 
 // 添加请求拦截器
