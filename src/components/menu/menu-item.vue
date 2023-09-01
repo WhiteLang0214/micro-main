@@ -50,6 +50,7 @@ const setMenuIndex = (data) => {
 const handleClickMenu = (data) => {
   const routerPath = createRouterPath(data);
   router.push(routerPath)
+  // currentActivePath 是带着不同微应用的baseUrl的
   store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify({ ...data, currentActivePath: routerPath }))
 }
 

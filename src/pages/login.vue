@@ -27,14 +27,13 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 import { ucLogin } from "@/api/login";
-// import actions from "@/qiankun/actions";
 
 const router = useRouter();
-// const store = useStore();
+const store = useStore();
 
 const ruleFormRef = ref("");
 const formSize = ref("default");
@@ -53,12 +52,21 @@ const rules = reactive({
 const login = () => {
   const name = ruleForm.name,
     pwd = ruleForm.pwd;
-    ucLogin({
-      name,
-      pwd
-    }).then(() => {
-        router.replace("/microMain/home");
-    }).catch(() => {})
+  ucLogin({
+    name,
+    pwd,
+  })
+    .then(() => {
+      const homeRoute = {
+        menuPath: "/microMain/home",
+        name: "主应用首页",
+        id: "",
+        currentActivePath: "/microMain/home"
+      };
+      router.replace(homeRoute.menuPath);
+      store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homeRoute));
+    })
+    .catch(() => {});
   // post(`/serve/doLogin?name=${name}&pwd=${pwd}`, {
   //   name,
   //   pwd,
@@ -67,25 +75,6 @@ const login = () => {
   //   router.replace("/microMain/home");
   // });
 };
-
-// 单点登录获取用户登录信息
-
-// 向vuex存储登录信息
-// const saveLoginInfo = () => {
-//   const loginInfo = {
-//     username: "lx",
-//     phone: "13116060177",
-//   };
-//   store.commit("SAVE_TOKEN", "token");
-//   store.commit("SAVE_LOGIN_INFO", loginInfo);
-//   sessionStorage.setItem("token", "token");
-//   sessionStorage.setItem("loginInfo", JSON.stringify(loginInfo));
-//   // 更新全局状态，为了给微应用使用
-//   actions.setGlobalState({
-//     token: "token",
-//     loginInfo,
-//   });
-// };
 
 const submitForm = async (formEl) => {
   if (!formEl) return;
@@ -100,7 +89,4 @@ const changeColor = (val) => {
   console.log("val---", val);
 };
 
-onMounted(() => {
-  sessionStorage.clear();
-})
 </script>

@@ -17,11 +17,16 @@ const routes = [
     component: () => import("@/pages/login.vue")
   },
   {
-    path: base + "/home",
-    name: '主应用首页',
-    menuPath: base + "/home",
+    path: base,
+    name: '布局',
     component: () => import("@/pages/layout.vue"),
     children: [
+      {
+        path: base+ "/home",
+        name: "主应用首页",
+        menuPath: base + "/home",
+        component: () => import("@/pages/home.vue")
+      },
       {
         path: base + "/setting",
         name: '主应用设置',
@@ -62,6 +67,12 @@ const router = createRouter({
   history: createWebHistory(),
   base,
   routes
+})
+
+router.beforeEach(to => {
+  if (to.name === "login") {
+    sessionStorage.clear()
+  }
 })
 
 export {
