@@ -4,5 +4,8 @@ export const getters = {
   },
   getLoginInfo(state) {
     return state.loginInfo
+  },
+  getActiveMenu(state) {
+    return state.currentActiveMenu
   }
 }

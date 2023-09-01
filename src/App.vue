@@ -20,14 +20,12 @@ const resetSessionData = () => {
 
   if (sessionLoginInfo) {
     store.replaceState(
-      Object.assign({}, store.state, {
-        microMain_login_info: JSON.parse(sessionLoginInfo),
-      })
+      Object.assign({}, store.state, JSON.parse(sessionLoginInfo))
     );
   }
 
   addEventListener("beforeunload", () => {
-    sessionStorage.setItem("microMain_login_info", JSON.stringify(store.state.loginInfo));
+    sessionStorage.setItem("microMain_login_info", JSON.stringify(store.state));
   })
 };
 

@@ -2,7 +2,7 @@
 import envConfig from './config.json'// 配置子应用访问地址
 const ENV = process.env.NODE_ENV || 'development'// 使用 NODE_ENV 区分不同环境，默认值为 development
 const config = envConfig[ENV]
-const {  MICRO_USER_CENTER, MICRO_Bi, MICRO_EMBP_VWEB } = config
+const {  MICRO_USER_CENTER } = config
 import store from "@/store"
 const microAppConfig = [
   // {
@@ -24,26 +24,26 @@ const microAppConfig = [
       echarts: window.echarts
     }
   },
-  {
-    name: 'microBi', // bi
-    entry: MICRO_Bi,
-    container: '#microContainer',
-    activeRule: '/microBi',
-    props: {
-      store,
-      echarts: window.echarts
-    }
-  },
-  {
-    name: 'microEmbpVweb', // embpVweb 单独的项目
-    entry: MICRO_EMBP_VWEB, // 
-    container: '#microContainer',
-    activeRule: '/microEmbpVweb',
-    props: {
-      store,
-      echarts: window.echarts
-    }
-  },
+  // {
+  //   name: 'microBi', // bi
+  //   entry: MICRO_Bi,
+  //   container: '#microContainer',
+  //   activeRule: '/microBi',
+  //   props: {
+  //     store,
+  //     echarts: window.echarts
+  //   }
+  // },
+  // {
+  //   name: 'microEmbpVweb', // embpVweb 单独的项目
+  //   entry: MICRO_EMBP_VWEB, // 
+  //   container: '#microContainer',
+  //   activeRule: '/microEmbpVweb',
+  //   props: {
+  //     store,
+  //     echarts: window.echarts
+  //   }
+  // },
 ];
 
 export default microAppConfig;

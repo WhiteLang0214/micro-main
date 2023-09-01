@@ -4,5 +4,8 @@ export const mutations = {
   },
   SAVE_LOGIN_INFO(state, val) {
     state.loginInfo = val;
+  },
+  SAVE_CURRENTACTIVEMENU(state, val) {
+    state.currentActiveMenu = val
   }
 }
