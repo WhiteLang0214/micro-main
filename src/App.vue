@@ -51,7 +51,6 @@ const handlePageHide = () => {
 }
 
 const handlePopstate = (ele) => {
-  console.log("popstate---", ele)
   if (ele.state && ele.state.current && ele.state.current != "/") {
     globalActiveMenu({ path: ele.state.current });
   } else {

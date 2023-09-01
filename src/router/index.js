@@ -18,17 +18,20 @@ const routes = [
   },
   {
     path: base + "/home",
-    name: 'home',
+    name: '主应用首页',
+    menuPath: base + "/home",
     component: () => import("@/pages/layout.vue"),
     children: [
       {
         path: base + "/setting",
-        name: 'setting',
+        name: '主应用设置',
+        menuPath: base + "/setting",
         component: () => import("@/pages/setting.vue")
       },
       {
         path: base + "/about",
-        name: 'about',
+        name: '主应用关于',
+        menuPath: base + "/about",
         component: () => import("@/pages/about.vue")
       },
     ]

@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 // import { useStore } from "vuex";
 import { ucLogin } from "@/api/login";
@@ -99,4 +99,8 @@ const submitForm = async (formEl) => {
 const changeColor = (val) => {
   console.log("val---", val);
 };
+
+onMounted(() => {
+  sessionStorage.clear();
+})
 </script>
