@@ -7,9 +7,11 @@
       </el-aside>
       <el-main class="layout-main">
         <TabMenu />
-        <router-view></router-view>
-        <!-- 子应用渲染容器 -->
-        <section id="microContainer" style="height: 100%;"></section>
+        <div class="router-container">
+          <router-view></router-view>
+          <!-- 子应用渲染容器 -->
+          <section id="microContainer"></section>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -20,7 +22,7 @@ import { computed, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import startQiankun from "@/qiankun/start";
 import Menu from "./menu.vue";
-import TabMenu from "@/components/tabMenu"
+import TabMenu from "@/components/menu/tabMenu"
 
 const store = useStore();
 
@@ -38,9 +40,10 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .layout-container {
   height: 100%;
+  background-color: #f2f2f5;
 }
 
 .layout-container .el-menu {
@@ -49,5 +52,11 @@ onUnmounted(() => {
 
 .layout-main {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  .router-container {
+    flex: 1;
+    overflow: auto;
+  }
 }
 </style>
