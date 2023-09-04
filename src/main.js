@@ -9,6 +9,7 @@ import "@/assets/element.css"; // 重设主题色
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./assets/reset.css";
+import svgIcon from "./assets/svg";
 import store from "./store";
 import { router } from "./router";
 import "@/qiankun/registerApp";
@@ -18,7 +19,7 @@ const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-app.use(router).use(store).use(ElementPlus, {
+app.use(router).use(store).use(svgIcon).use(ElementPlus, {
   locale: zhCn
 }).mount('#MainApp')
 

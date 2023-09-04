@@ -1,6 +1,6 @@
 <template>
   <el-container class="layout-container">
-    <el-header>Header {{ getUsername }}</el-header>
+    <Header />
     <el-container>
       <el-aside width="200px">
         <Menu />
@@ -18,15 +18,11 @@
 </template>
 
 <script setup name="Layout">
-import { computed, onMounted, onUnmounted } from "vue";
-import { useStore } from "vuex";
+import { onMounted, onUnmounted } from "vue";
 import startQiankun from "@/qiankun/start";
 import Menu from "./menu.vue";
 import TabMenu from "@/components/menu/tabMenu"
-
-const store = useStore();
-
-const getUsername = computed(() => JSON.parse(store.getters.getLoginInfo).loginUserInfo?.name);
+import Header from "@/components/header"
 
 onMounted(() => {
   if (!window.qiankunStarted) {
@@ -44,6 +40,7 @@ onUnmounted(() => {
 .layout-container {
   height: 100%;
   background-color: #f2f2f5;
+  flex-direction: column;
 }
 
 .layout-container .el-menu {
