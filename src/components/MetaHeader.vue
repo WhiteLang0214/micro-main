@@ -79,7 +79,17 @@ const uploadHeader = () => {
 }
 
 const changeSys = () => {
-  console.log("切换系统")
+  ElMessageBox.confirm("确定要切换系统吗?", "提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    cancelButtonClass: "btnFalses",
+    type: "warning",
+  })
+    .then(() => {
+      // 拼接当前路由的path
+      window.location = process.env.VUE_APP_SSO_HOME;
+    })
+    .catch(() => {});
 }
 
 const exit = () => {

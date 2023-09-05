@@ -1,6 +1,5 @@
 <template>
   <div id="login">
-    <el-color-picker v-model="color" @change="changeColor" />
     <el-form
       ref="ruleFormRef"
       :model="ruleForm"
@@ -37,7 +36,6 @@ const store = useStore();
 
 const ruleFormRef = ref("");
 const formSize = ref("default");
-const color = ref("#3b9ce0");
 
 const ruleForm = reactive({
   name: "13116060177",
@@ -67,13 +65,6 @@ const login = () => {
       store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homeRoute));
     })
     .catch(() => {});
-  // post(`/serve/doLogin?name=${name}&pwd=${pwd}`, {
-  //   name,
-  //   pwd,
-  // }).then(() => {
-  //   saveLoginInfo();
-  //   router.replace("/microMain/home");
-  // });
 };
 
 const submitForm = async (formEl) => {
@@ -83,10 +74,6 @@ const submitForm = async (formEl) => {
       login();
     }
   });
-};
-
-const changeColor = (val) => {
-  console.log("val---", val);
 };
 
 </script>
