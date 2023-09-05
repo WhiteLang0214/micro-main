@@ -1,6 +1,11 @@
 const path = require('path')
 const name = require("./package.json").name;
 const timeStamp = new Date().getTime();
+// const px2rem = require("postcss-px2rem");
+// // 配置基础的rem值
+// const postcssPlugins = px2rem({
+//   remUnit: 192
+// })
 
 function resolve(dir) {
   return path.join(__dirname, '.', dir);
@@ -45,5 +50,25 @@ module.exports = {
       .loader('svg-sprite-loader')
       .options({ symbolId: 'icon-[name]'}) // 使用图标的名称
       .end()
+
+    // config.module.rule("css")
+    //   .test(/\.css/)
+    //   .oneOf("vue")
+    //   .use("px2rem-loader")
+    //   .loader("px2rem-loader")
+    //   .options({
+    //     remUnit: 192,
+    //     remPrecision: 12
+    //   })
+    //   .end()
+  },
+  css: {
+    loaderOptions: {
+      postcss: {
+        postcssOptions: {
+          // plugins: [postcssPlugins]
+        }
+      }
+    }
   }
 }

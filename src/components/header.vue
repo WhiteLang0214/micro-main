@@ -52,12 +52,9 @@ const getLoginInfo = computed(() => JSON.parse(store.getters.getLoginInfo).login
 const getUsername = computed(() => getLoginInfo.value?.name);
 const getUserTenant = computed(() => getLoginInfo.value?.tenantName);
 
-console.log(JSON.parse(store.getters.getLoginInfo).loginUserInfo)
-
 const getLoginAccountInfo = () => {
   loginAccountInfo().then(res => {
-    loginAccountInfoData.value = res.info;
-    console.log("获取登录用户信息--", loginAccountInfoData.value)
+    loginAccountInfoData.value = res;
   })
 }
 

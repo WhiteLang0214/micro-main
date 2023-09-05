@@ -1,4 +1,4 @@
-import { post } from "@/axios";
+import { post, get } from "@/axios";
 
 // export const olgLogin = data => post("/bas/user/login", data)
 
@@ -15,3 +15,5 @@ export const ucLogin = data => post(`/uc/login/pwd`, data);
 // uc登录 bas获取菜单
 // export const ucMenuPc = () => get(`/bas/menu/pc`);
 export const ucMenuPc = data => post(`/uc/authority/userMenu?menuType=${data?.menuType || 1}`, data);
+// 获取头像
+export const loginAccountInfo = data => get(`/uc/loginAccount/loginAccountInfo`, data)
