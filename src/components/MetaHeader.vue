@@ -22,10 +22,10 @@
             <el-sub-menu index="2" popper-class="sub-menu-poper">
               <template #title>
                 <!-- 有头像 展示,反之截取姓名第一个字 -->
-                <div class="avatar" v-if="hasHeadScilpture">
+                <div class="avatar" v-if="headSculpture">
                   <el-avatar
                     :size="36"
-                    :src="hasHeadScilpture" />
+                    :src="headSculpture" />
                 </div>
                 <!-- 无头像 截取第一个字展示 -->
                 <div v-else class="avatar">
@@ -60,13 +60,13 @@ const metaUploadHeaderRef = ref();
 const getLoginInfo = computed(() => JSON.parse(store.getters.getLoginInfo).loginUserInfo || {})
 const getUsername = computed(() => getLoginInfo.value?.name || "");
 const getUserTenant = computed(() => getLoginInfo.value?.tenantName || "");
-const hasHeadScilpture = computed(() => loginAccountInfoData.value.headSculpture || "")
-
+// 获取登录用户的头像信息
 const getLoginAccountInfo = () => {
   loginAccountInfo().then(res => {
-    loginAccountInfoData.value = res;
+    loginAccountInfoData.value = res.info;
   })
 }
+const headSculpture = computed(() => loginAccountInfoData.value?.headSculpture || "")
 
 const handleSelect = (e) => {
   if (e == "uploadHeader") uploadHeader()
@@ -75,7 +75,6 @@ const handleSelect = (e) => {
 }
 
 const uploadHeader = () => {
-  console.log("上传头像", metaUploadHeaderRef.value)
   metaUploadHeaderRef.value.onOpen();
 }
 

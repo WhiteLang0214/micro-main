@@ -94,10 +94,10 @@ export default {
     onOpen() {
       this.show = true;
       getHeaderId().then((res) => {
-        console.log("meta-uploadheader--", res)
-        if (res && res.headSculpture) {
-          this.formValidate.id = res.headSculpture;
-          this.formValidate.mainImage = res.headSculpture;
+        const { info } = res;
+        if (info && info.headSculpture) {
+          this.formValidate.id = info.headSculpture;
+          this.formValidate.mainImage = info.headSculpture;
         }
       });
     },
