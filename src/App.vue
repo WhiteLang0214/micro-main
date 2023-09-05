@@ -17,8 +17,7 @@ let endDate = ref(new Date());
 // 存储 vuex 数据，防止刷新丢失
 const resetSessionData = () => {
   const sessionLoginInfo = sessionStorage.getItem("microMain_login_info");
-
-  if (sessionLoginInfo) {
+  if (sessionLoginInfo && sessionLoginInfo !== undefined) {
     store.replaceState(
       Object.assign({}, store.state, JSON.parse(sessionLoginInfo))
     );

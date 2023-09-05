@@ -1,20 +1,23 @@
 <template>
   <div class="micro-tab-menu">
     <el-button
-      :class="route.fullPath === i.currentActivePath ? 'micro-tab-menu-active' : ''"
-      :text="route.fullPath === i.currentActivePath ? true : false"
-      :type="route.fullPath === i.currentActivePath ? 'primary' : 'default'"
+      :class="getCurrentRoute.fullPath === i.currentActivePath ? 'micro-tab-menu-active' : ''"
+      :text="getCurrentRoute.fullPath === i.currentActivePath ? true : false"
+      :type="getCurrentRoute.fullPath === i.currentActivePath ? 'primary' : 'default'"
       bg
-      v-for="i in routeMatched"
+      v-for="(i, index) in getActiveRouteMatched"
       :key="i.fullPath"
       @click="changeRoute(i)"
-      >{{ i.name || i.meta?.title }}</el-button
-    >
+      >
+      {{ i.name || i.meta?.title }}
+      <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon>
+    </el-button>
   </div>
 </template>
 
 <script lang="js" setup>
 
+import { computed } from "@vue/reactivity";
 import { watch, ref } from "vue";
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from "vuex";
@@ -33,10 +36,36 @@ const changeRoute = (i) => {
   }
 }
 
+const closeMenu = (e, index) => {
+  store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
+  console.log("index----", index)
+  if (getActiveRouteMatched.value.length == 0) {
+    const base = process.env.VUE_APP_BASE_URL;
+    changeRoute({
+      path: base+ "/home",
+      name: "主应用首页",
+      menuPath: base + "/home",
+      currentActivePath: base+ "/home"
+    })
+  }
+}
+
+const getActiveRouteMatched = computed({
+  get() {
+    return store.getters.getActiveRouteMatched
+  },
+  set(val) {
+    return routeMatched.value = val;
+  }
+})
+
+// 当前激活路由
+const getCurrentRoute = computed(() => route)
+
 watch(
   route,
   () => {
-    routeMatched.value = store.getters.getActiveRouteMatched;
+    getActiveRouteMatched.value = store.getters.getActiveRouteMatched;
   },
   {
     immediate: true
@@ -45,7 +74,7 @@ watch(
 </script>
 <style scoped lang="scss">
 .micro-tab-menu {
-  padding: 0 10px 10px 0;
+  padding: 0 0 10px 0;
   .el-button {
     border-radius: 0;
     &.is-has-bg,
@@ -68,6 +97,10 @@ watch(
         bottom: -10px;
       }
     }
+  }
+
+  .micro-tab-menu-close {
+    margin-left: 6px;
   }
 }
 </style>

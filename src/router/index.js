@@ -71,6 +71,7 @@ const router = createRouter({
 
 router.beforeEach(to => {
   if (to.name === "login") {
+    sessionStorage.setItem("microMain_login_info", null)
     sessionStorage.clear()
   }
 })
