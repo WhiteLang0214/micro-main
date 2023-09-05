@@ -9,7 +9,7 @@ import "@/assets/element.css"; // 重设主题色
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./assets/reset.css";
-import "@/assets/reset-flexible";
+import "@/assets/rem";
 import svgIcon from "./assets/svg";
 import store from "./store";
 import { router } from "./router";
