@@ -30,7 +30,7 @@
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { ucLogin } from "@/api/login";
+import { ucLogin } from "@/api";
 
 const router = useRouter();
 const store = useStore();

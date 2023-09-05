@@ -23,6 +23,7 @@ specifiers:
   save: ^2.9.0
   svg-sprite-loader: ^6.0.11
   vue: ^3.0.0
+  vue-cropper: 1.0.8
   vue-router: ^4.2.4
   vuex: ^4.1.0
   webpack: ^5.88.1
@@ -44,6 +45,7 @@ dependencies:
   sass-loader: registry.npmmirror.com/sass-loader/13.3.2_6gabvqairkpnoek2fvwnputs6q
   save: registry.npmmirror.com/save/2.9.0
   vue: registry.npmmirror.com/vue/3.3.4
+  vue-cropper: registry.npmmirror.com/vue-cropper/1.0.8
   vue-router: registry.npmmirror.com/vue-router/4.2.4_vue@3.3.4
   vuex: registry.npmmirror.com/vuex/4.1.0_vue@3.3.4
   webpack: registry.npmmirror.com/webpack/5.88.2_webpack-cli@5.1.4
@@ -10793,6 +10795,12 @@ packages:
     name: vm-browserify
     version: 1.1.2
     dev: true
+
+  registry.npmmirror.com/vue-cropper/1.0.8:
+    resolution: {integrity: sha512-EX9XoT5a/PQ62J6KDZz8hhaFi9ME1k2yBZlRfYCm8iySzTcjw0nDBq8Y65HtyHaH2jJwUKgYfD6mdFCE0GhUzA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-cropper/-/vue-cropper-1.0.8.tgz}
+    name: vue-cropper
+    version: 1.0.8
+    dev: false
 
   registry.npmmirror.com/vue-demi/0.14.6_vue@3.3.4:
     resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.14.6.tgz}

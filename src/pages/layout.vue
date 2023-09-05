@@ -1,12 +1,12 @@
 <template>
   <el-container class="layout-container">
-    <Header />
+    <meta-header />
     <el-container>
       <el-aside width="200px">
-        <Menu />
+        <MetaMenu />
       </el-aside>
       <el-main class="layout-main">
-        <TabMenu />
+        <MetaTabMenu />
         <div class="router-container">
           <router-view></router-view>
           <!-- 子应用渲染容器 -->
@@ -20,9 +20,6 @@
 <script setup name="Layout">
 import { onMounted, onUnmounted } from "vue";
 import startQiankun from "@/qiankun/start";
-import Menu from "./menu.vue";
-import TabMenu from "@/components/menu/tabMenu"
-import Header from "@/components/header"
 
 onMounted(() => {
   if (!window.qiankunStarted) {

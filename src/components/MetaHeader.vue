@@ -3,7 +3,7 @@
     <el-row class="micro-header-row" justify="space-between" align="middle">
       <el-col :span="12" class="micro-header-col">
         <div class="logo">
-          <svg-icon iconName="WEBlogo" />
+          <MetaSvgIcon iconName="WEBlogo" />
         </div>
       </el-col>
       <el-col :span="12" class="micro-header-col">
@@ -17,6 +17,7 @@
             mode="horizontal"
             background-color="transparent"
             :ellipsis="false"
+            @select="handleSelect"
           >
             <el-sub-menu index="2" popper-class="sub-menu-poper">
               <template #title>
@@ -31,26 +32,35 @@
                   {{ getUsername.slice(0, 1) }}
                 </div>
               </template>
+              <el-menu-item index="uploadHeader">上传头像</el-menu-item>
+              <el-menu-item index="changeSys">切换系统</el-menu-item>
+              <el-menu-item index="exit">退出系统</el-menu-item>
             </el-sub-menu>
           </el-menu>
         </div>
       </el-col>
     </el-row>
+    <!-- 上传头像 -->
+    <metaUploadHeader ref="metaUploadHeaderRef"></metaUploadHeader>
   </div>
 </template>
 
 <script lang="js" setup>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import { loginAccountInfo } from "@/api/login.js";
+import { loginAccountInfo } from "@/api";
+import { ElMessageBox } from "element-plus";
+import { logout } from "@/api";
 
 const store = useStore();
 
 let loginAccountInfoData = ref({});
+const metaUploadHeaderRef = ref();
 
-const getLoginInfo = computed(() => JSON.parse(store.getters.getLoginInfo).loginUserInfo)
-const getUsername = computed(() => getLoginInfo.value?.name);
-const getUserTenant = computed(() => getLoginInfo.value?.tenantName);
+const getLoginInfo = computed(() => JSON.parse(store.getters.getLoginInfo).loginUserInfo || {})
+const getUsername = computed(() => getLoginInfo.value?.name || "");
+const getUserTenant = computed(() => getLoginInfo.value?.tenantName || "");
+const hasHeadScilpture = computed(() => loginAccountInfoData.value.headSculpture || "")
 
 const getLoginAccountInfo = () => {
   loginAccountInfo().then(res => {
@@ -58,7 +68,36 @@ const getLoginAccountInfo = () => {
   })
 }
 
-const hasHeadScilpture = computed(() => loginAccountInfoData.value.headSculpture)
+const handleSelect = (e) => {
+  if (e == "uploadHeader") uploadHeader()
+  if (e == "changeSys") changeSys()
+  if (e == "exit") exit()
+}
+
+const uploadHeader = () => {
+  console.log("上传头像", metaUploadHeaderRef.value)
+  metaUploadHeaderRef.value.onOpen();
+}
+
+const changeSys = () => {
+  console.log("切换系统")
+}
+
+const exit = () => {
+  ElMessageBox.confirm("确定要退出系统吗?", "提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    cancelButtonClass: "btnFalses",
+    type: "warning",
+  })
+    .then(() => {
+      logout().then(() => {
+        window.location = process.env.VUE_APP_SSO_LOGIN;
+      });
+    })
+    .catch(() => {});
+}
+
 
 onMounted(() => {
   getLoginAccountInfo()
@@ -103,6 +142,12 @@ onMounted(() => {
         margin-left: 16px;
         .el-sub-menu .el-sub-menu__title {
           padding: 0;
+          padding-right: 10px;
+          border-bottom: 0;
+        }
+
+        .el-sub-menu__icon-arrow {
+          right: -12px;
         }
       }
     }

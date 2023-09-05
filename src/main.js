@@ -10,17 +10,18 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import "./assets/reset.css";
 import "@/assets/rem";
-import svgIcon from "./assets/svg";
+import "./assets/svg";
 import store from "./store";
 import { router } from "./router";
 import "@/qiankun/registerApp";
+import coms from "@/components";
 
 const app = createApp(App);
 // 注册element-icons
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-app.use(router).use(store).use(svgIcon).use(ElementPlus, {
+app.use(router).use(store).use(coms).use(ElementPlus, {
   locale: zhCn
 }).mount('#MainApp')
 

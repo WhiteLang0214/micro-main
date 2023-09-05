@@ -8,7 +8,7 @@
     @close="handleClose"
   >
     <template v-for="item in menuData" :key="item.id">
-      <SubMenu :item="item" />
+      <MetaSubMenu :item="item" />
     </template>
   </el-menu>
 </template>
@@ -17,8 +17,7 @@
 
 import { onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
-import { ucMenuPc } from "@/api/login"
-import SubMenu from "@/components/menu/sub-menu.vue"
+import { ucMenuPc } from "@/api"
 import { useRoute } from 'vue-router'
 
 const store = useStore();
@@ -71,8 +70,13 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .layout-menu {
   background-color: transparent;
+  .el-sub-menu {
+    .el-menu {
+      background-color: transparent;
+    }
+  }
 }
 </style>

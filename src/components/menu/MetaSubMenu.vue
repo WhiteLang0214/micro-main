@@ -5,19 +5,17 @@
         <el-icon><location /></el-icon>
         <span>{{ subMenuItem.name }}</span>
       </template>
-      <SubMenuItem :menuItemData="subMenuItem"></SubMenuItem>
+      <MetaSubMenuItem :menuItemData="subMenuItem" />
     </el-sub-menu>
   </template>
   <template v-else>
-    <MenuItem :menuItemData="subMenuItem"></MenuItem>
+    <MetaMenuItem :menuItemData="subMenuItem" />
   </template>
 </template>
 
 <script lang="js" setup>
 
 import { defineProps, shallowRef } from "vue"
-import SubMenuItem from "./sub-menu-item.vue"
-import MenuItem from "@/components/menu/menu-item.vue"
 
 const props = defineProps({
   item: {
