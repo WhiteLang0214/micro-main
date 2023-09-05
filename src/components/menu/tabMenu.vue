@@ -45,7 +45,7 @@ watch(
 </script>
 <style scoped lang="scss">
 .micro-tab-menu {
-  padding: 0 10px 10px;
+  padding: 0 10px 10px 0;
   .el-button {
     border-radius: 0;
     &.is-has-bg,

@@ -72,4 +72,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.layout-menu {
+  background-color: transparent;
+}
 </style>

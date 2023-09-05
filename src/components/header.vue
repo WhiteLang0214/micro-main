@@ -68,7 +68,6 @@ onMounted(() => {
 .micro-header {
   .micro-header-row {
     height: 64px;
-    background-color: #fff;
     padding: 0 20px;
     box-sizing: border-box;
 
