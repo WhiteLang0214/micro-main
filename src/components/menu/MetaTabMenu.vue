@@ -90,6 +90,7 @@ watch(
 </script>
 <style scoped lang="scss">
 .micro-tab-menu {
+  padding-bottom: 10px;
   .el-button {
     border-radius: 0;
     &.is-has-bg,
