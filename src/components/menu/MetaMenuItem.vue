@@ -48,6 +48,7 @@ const setMenuIndex = (data) => {
 }
 
 const handleClickMenu = (data) => {
+  console.log('route---', createRouterPath(data))
   const routerPath = createRouterPath(data);
   router.push(routerPath)
   // currentActivePath 是带着不同微应用的baseUrl的

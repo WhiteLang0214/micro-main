@@ -10,7 +10,7 @@
       @click="changeRoute(i)"
       >
       {{ i.name || i.meta?.title }}
-      <template v-if="i.id !== 'M0001'">
+      <template v-if="i.id !== getHomeMenuId">
         <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon>
       </template>
     </el-button>
@@ -77,6 +77,9 @@ const getActiveRouteMatched = computed({
 
 // 当前激活路由
 const getCurrentRoute = computed(() => route)
+
+// 获取首页菜单id
+const getHomeMenuId = computed(() => process.env.VUE_APP_HOME_MENU_ID)
 
 watch(
   route,

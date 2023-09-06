@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router"
 
 const base = process.env.VUE_APP_BASE_URL;
+const homeMenuId = process.env.VUE_APP_HOME_MENU_ID;
 
 const homePath = {
-  path: base+ "/home",
+  path: base + "/home",
   name: "首页",
-  id: "M0001",
+  id: homeMenuId,
   menuPath: base + "/home",
-  currentActivePath: "/microMain/home",
+  currentActivePath: base + "/home",
   component: () => import("@/pages/home.vue")
 }
 
