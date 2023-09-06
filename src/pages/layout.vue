@@ -44,6 +44,11 @@ onUnmounted(() => {
   height: 100%;
 }
 
+.layout-container .el-container {
+  height: 100%;
+  overflow-y: auto;
+}
+
 .layout-main {
   padding: 0;
   display: flex;

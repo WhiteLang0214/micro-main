@@ -5,12 +5,12 @@
       :text="getCurrentRoute.fullPath === i.currentActivePath ? true : false"
       :type="getCurrentRoute.fullPath === i.currentActivePath ? 'primary' : 'default'"
       bg
-      v-for="(i, index) in getActiveRouteMatched"
+      v-for="i in getActiveRouteMatched"
       :key="i.fullPath"
       @click="changeRoute(i)"
       >
       {{ i.name || i.meta?.title }}
-      <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon>
+      <!-- <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon> -->
     </el-button>
   </div>
 </template>
@@ -36,19 +36,19 @@ const changeRoute = (i) => {
   }
 }
 
-const closeMenu = (e, index) => {
-  store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
-  console.log("index----", index)
-  if (getActiveRouteMatched.value.length == 0) {
-    const base = process.env.VUE_APP_BASE_URL;
-    changeRoute({
-      path: base+ "/home",
-      name: "主应用首页",
-      menuPath: base + "/home",
-      currentActivePath: base+ "/home"
-    })
-  }
-}
+// const closeMenu = (e, index) => {
+//   store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
+//   console.log("index----", index)
+//   if (getActiveRouteMatched.value.length == 0) {
+//     const base = process.env.VUE_APP_BASE_URL;
+//     changeRoute({
+//       path: base+ "/home",
+//       name: "主应用首页",
+//       menuPath: base + "/home",
+//       currentActivePath: base+ "/home"
+//     })
+//   }
+// }
 
 const getActiveRouteMatched = computed({
   get() {
@@ -74,7 +74,6 @@ watch(
 </script>
 <style scoped lang="scss">
 .micro-tab-menu {
-  padding: 0 0 10px 0;
   .el-button {
     border-radius: 0;
     &.is-has-bg,
