@@ -30,6 +30,7 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { ucLogin } from "@/api";
+import { homePath } from "@/router";
 
 const router = useRouter();
 const store = useStore();
@@ -55,14 +56,14 @@ const login = () => {
     pwd,
   })
     .then(() => {
-      const homeRoute = {
-        menuPath: "/microMain/home",
-        name: "主应用首页",
-        id: "",
-        currentActivePath: "/microMain/home"
-      };
-      router.replace(homeRoute.menuPath);
-      store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homeRoute));
+      // 有当前激活路由，则跳转激活路由。反之跳首页
+      const currentActive = store.getters.getActiveMenu;
+      if (currentActive) {
+        router.replace(JSON.parse(currentActive).menuPath);
+      } else {
+        router.replace(homePath.menuPath);
+        store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homePath));
+      }
     })
     .catch(() => {});
 };

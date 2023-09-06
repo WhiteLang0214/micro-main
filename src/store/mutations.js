@@ -15,7 +15,12 @@ export const mutations = {
     const currentActiveMenu = JSON.parse(val)
     const routeFindIndex = activeRouteMatched.findIndex(i => i.menuPath === currentActiveMenu.menuPath);
     if (routeFindIndex < 0 && currentActiveMenu) {
-      state.activeRouteMatched.push(currentActiveMenu)
+      // 如果当前激活路由是首页，则放在数组第一个
+      if (currentActiveMenu.id && currentActiveMenu.id === "M0001") {
+        state.activeRouteMatched.unshift(currentActiveMenu)
+      } else {
+        state.activeRouteMatched.push(currentActiveMenu)
+      }
     }
   },
   // 存储的激活路由栈记录-删除当前关闭路由

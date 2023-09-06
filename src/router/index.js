@@ -2,6 +2,15 @@ import { createRouter, createWebHistory } from "vue-router"
 
 const base = process.env.VUE_APP_BASE_URL;
 
+const homePath = {
+  path: base+ "/home",
+  name: "首页",
+  id: "M0001",
+  menuPath: base + "/home",
+  currentActivePath: "/microMain/home",
+  component: () => import("@/pages/home.vue")
+}
+
 const routes = [
   {
     path: "/",
@@ -20,26 +29,7 @@ const routes = [
     path: base,
     name: '布局',
     component: () => import("@/pages/layout.vue"),
-    children: [
-      {
-        path: base+ "/home",
-        name: "主应用首页",
-        menuPath: base + "/home",
-        component: () => import("@/pages/home.vue")
-      },
-      {
-        path: base + "/setting",
-        name: '主应用设置',
-        menuPath: base + "/setting",
-        component: () => import("@/pages/setting.vue")
-      },
-      {
-        path: base + "/about",
-        name: '主应用关于',
-        menuPath: base + "/about",
-        component: () => import("@/pages/about.vue")
-      },
-    ]
+    children: [homePath]
   },
   {
     path: '/microChild/:pathMatch(.*)',
@@ -78,5 +68,6 @@ router.beforeEach(to => {
 
 export {
   routes,
-  router
+  router,
+  homePath
 }

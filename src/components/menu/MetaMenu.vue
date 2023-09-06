@@ -19,27 +19,14 @@ import { onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { ucMenuPc } from "@/api"
 import { useRoute } from 'vue-router'
+import { homePath } from "@/router";
 
 const store = useStore();
 const route = useRoute();
 const isCollapse = ref(false);
-let menuData = ref([
-  {
-    menuPath: '/microMain/home',
-    name: '主应用首页',
-    id: ""
-  },
-  {
-    menuPath: '/microMain/setting',
-    name: '主应用设置',
-    id: ""
-  },
-  {
-    menuPath: '/microMain/about',
-    name: '主应用关于',
-    id: ""
-  }
-]);
+const homeRoute = ref(homePath)
+
+let menuData = ref([homeRoute]);
 
 const handleOpen = () => {};
 const handleClose = () => {};
@@ -51,7 +38,18 @@ const getMenu = () => {
     menuData.value = menuData.value.concat(info?.menus || []);
     store.commit("SAVE_LOGIN_INFO", JSON.stringify(info))
     sessionStorage.setItem("microMain_login_info", JSON.stringify(info))
+    defaultActiveCurrentRoute()
   }).catch(() => {})
+}
+
+// 默认如果没有激活当前路由记录，跳转首页
+const defaultActiveCurrentRoute = () => {
+  // 当前激活路由
+  const currentActive = store.getters.getActiveMenu;
+  // 如果没有当前激活路由，则激活首页
+  if (!currentActive) {
+    store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homeRoute))
+  }
 }
 
 let defaultActive = ref(route.fullPath);

@@ -5,12 +5,14 @@
       :text="getCurrentRoute.fullPath === i.currentActivePath ? true : false"
       :type="getCurrentRoute.fullPath === i.currentActivePath ? 'primary' : 'default'"
       bg
-      v-for="i in getActiveRouteMatched"
+      v-for="(i, index) in getActiveRouteMatched"
       :key="i.fullPath"
       @click="changeRoute(i)"
       >
       {{ i.name || i.meta?.title }}
-      <!-- <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon> -->
+      <template v-if="i.id !== 'M0001'">
+        <el-icon class="micro-tab-menu-close" @click.stop="closeMenu(i, index)"><Close /></el-icon>
+      </template>
     </el-button>
   </div>
 </template>
@@ -36,19 +38,33 @@ const changeRoute = (i) => {
   }
 }
 
-// const closeMenu = (e, index) => {
-//   store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
-//   console.log("index----", index)
-//   if (getActiveRouteMatched.value.length == 0) {
-//     const base = process.env.VUE_APP_BASE_URL;
-//     changeRoute({
-//       path: base+ "/home",
-//       name: "主应用首页",
-//       menuPath: base + "/home",
-//       currentActivePath: base+ "/home"
-//     })
-//   }
-// }
+const closeMenu = (e, index) => {
+  // 有当前激活路由，则跳转激活路由。反之跳首页
+  const currentActive = store.getters.getActiveMenu;
+  if (JSON.parse(currentActive).menuPath == e.menuPath) {
+    closeTab(e, index)
+  } else {
+    store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
+  }
+}
+
+const closeTab = (e, index) => {
+  // 激活路由栈长度
+  const len = getActiveRouteMatched.value.length;
+  let jumpRoute = null;
+  if (index + 1 < len) {
+    // 激活后一个路由
+    jumpRoute = getActiveRouteMatched.value[index + 1];
+  } else {
+    // 激活前一个路由
+    jumpRoute = getActiveRouteMatched.value[index - 1];
+  }
+  // 存在路由数据
+  if (jumpRoute) {
+    changeRoute(jumpRoute)
+    store.commit("DELETE_ACTIVE_ROUTEMATCHED", e)
+  }
+}
 
 const getActiveRouteMatched = computed({
   get() {
