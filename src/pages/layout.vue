@@ -2,7 +2,7 @@
   <el-container class="layout-container">
     <meta-header />
     <el-container>
-      <el-aside width="200px">
+      <el-aside>
         <MetaMenu />
       </el-aside>
       <el-main class="layout-main">
@@ -67,12 +67,16 @@ onUnmounted(() => {
 .layout-container .el-container {
   height: 100%;
   overflow-y: auto;
+  .el-aside {
+    width: auto;
+  }
 }
 
 .layout-main {
   padding: 0;
   display: flex;
   flex-direction: column;
+
   .router-container {
     flex: 1;
     overflow: auto;

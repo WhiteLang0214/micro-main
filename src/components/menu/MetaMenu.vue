@@ -4,6 +4,7 @@
     :default-openeds="[defaultActive]"
     class="layout-menu"
     :collapse="isCollapse"
+    unique-opened
     @open="handleOpen"
     @close="handleClose"
   >
@@ -110,5 +111,10 @@ onMounted(() => {
       background-color: transparent;
     }
   }
+}
+
+.layout-menu :not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

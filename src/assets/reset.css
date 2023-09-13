@@ -10,21 +10,3 @@ body {
   min-width: 840px;
   margin: 0 auto;
 }
-
-/* @media screen and (min-width: 1440px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1440px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  html {
-    font-size: 12px;
-  }
-} */
