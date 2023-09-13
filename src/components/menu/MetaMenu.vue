@@ -9,7 +9,18 @@
     @close="handleClose"
   >
     <template v-for="item in menuData" :key="item.id">
-      <MetaSubMenu :item="item" />
+      <template v-if="item.children && item.children.length > 0">
+        <el-sub-menu :index="item.id">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span>{{ item.name }}</span>
+          </template>
+          <MetaSubMenuItem :menuItemData="item" />
+        </el-sub-menu>
+      </template>
+      <template v-else>
+        <MetaMenuItem :menuItemData="item" :isCollapse="isCollapse" @toggleCollapse="toggleCollapse" />
+      </template>
     </template>
   </el-menu>
 </template>
@@ -89,6 +100,10 @@ const defaultActiveCurrentRoute = () => {
 
 let defaultActive = ref(route.fullPath);
 
+const toggleCollapse = (val) => {
+  isCollapse.value = val;
+}
+
 watch(
   route, 
   () => {
@@ -113,8 +128,8 @@ onMounted(() => {
   }
 }
 
-.layout-menu :not(.el-menu--collapse) {
+.layout-menu:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
+  // min-height: 400px;
 }
 </style>
