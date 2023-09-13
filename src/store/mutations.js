@@ -26,7 +26,7 @@ export const mutations = {
   // 存储的激活路由栈记录-删除当前关闭路由
   DELETE_ACTIVE_ROUTEMATCHED(state, val) {
     const activeRouteMatched = state.activeRouteMatched;
-    state.activeRouteMatched = activeRouteMatched.filter(i => i.currentActivePath != val.currentActivePath)
+    state.activeRouteMatched = activeRouteMatched.filter(i => i.microFullPath != val.microFullPath)
   },
   CHANGE_ROUTER_VIEW_LOADING(state, val) {
     state.routerViewLoading = val
