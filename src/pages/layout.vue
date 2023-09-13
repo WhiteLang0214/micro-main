@@ -7,7 +7,10 @@
       </el-aside>
       <el-main class="layout-main">
         <MetaTabMenu />
-        <div class="router-container">
+        <div class="router-container custom-loading-svg"
+          v-loading="setLoading"
+          :element-loading-svg="svg"
+          element-loading-svg-view-box="-10, -10, 50, 50">
           <router-view></router-view>
           <!-- 子应用渲染容器 -->
           <section id="microContainer"></section>
@@ -18,8 +21,22 @@
 </template>
 
 <script setup name="Layout">
-import { onMounted, onUnmounted } from "vue";
+import { computed, onMounted, onUnmounted } from "vue";
 import startQiankun from "@/qiankun/start";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const svg = `
+  <path class="path" d="
+    M 30 15
+    L 28 17
+    M 25.61 25.61
+    A 15 15, 0, 0, 1, 15 30
+    A 15 15, 0, 1, 1, 27.99 7.5
+    L 15 15
+  " style="stroke-width: 4px; fill: rgba(0, 0, 0, 0)"/>
+`
 
 onMounted(() => {
   if (!window.qiankunStarted) {
@@ -27,6 +44,8 @@ onMounted(() => {
     startQiankun();
   }
 });
+
+const setLoading = computed(() => store.getters.getRouterViewLoading)
 
 onUnmounted(() => {
   window.qiankunStarted = null;

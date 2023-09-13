@@ -10,5 +10,9 @@ export const getters = {
   // 获取激活路由栈
   getActiveRouteMatched(state) {
     return state.activeRouteMatched;
+  },
+  // 微应用加载loading动画
+  getRouterViewLoading(state) {
+    return state.routerViewLoading;
   }
 }

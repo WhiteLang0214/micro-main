@@ -8,7 +8,7 @@ const homePath = {
   name: "首页",
   id: homeMenuId,
   menuPath: base + "/home",
-  currentActivePath: base + "/home",
+  microFullPath: base + "/home",
   component: () => import("@/pages/home.vue")
 }
 

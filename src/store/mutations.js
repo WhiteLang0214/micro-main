@@ -27,5 +27,12 @@ export const mutations = {
   DELETE_ACTIVE_ROUTEMATCHED(state, val) {
     const activeRouteMatched = state.activeRouteMatched;
     state.activeRouteMatched = activeRouteMatched.filter(i => i.currentActivePath != val.currentActivePath)
+  },
+  CHANGE_ROUTER_VIEW_LOADING(state, val) {
+    state.routerViewLoading = val
+  },
+  // 重置激活路由栈
+  RESET_ACTIVE_ROUTE_MATCHED(state, val) {
+    state.activeRouteMatched = val
   }
 }
