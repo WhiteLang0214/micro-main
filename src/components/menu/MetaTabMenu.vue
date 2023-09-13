@@ -3,9 +3,9 @@
     <div class="micro-button">
       <el-button :disabled="disabledLeftButton"><el-icon><ArrowLeft /></el-icon></el-button>
       <el-button
-        :class="getCurrentRoute.microFullPath === i.microFullPath ? 'micro-tab-menu-active' : ''"
-        :text="getCurrentRoute.microFullPath === i.microFullPath ? true : false"
-        :type="getCurrentRoute.microFullPath === i.microFullPath ? 'primary' : 'default'"
+        :class="getCurrentRoute.fullPath === i.microFullPath ? 'micro-tab-menu-active' : ''"
+        :text="getCurrentRoute.fullPath === i.microFullPath ? true : false"
+        :type="getCurrentRoute.fullPath === i.microFullPath ? 'primary' : 'default'"
         bg
         v-for="(i, index) in getActiveRouteMatched"
         :key="i.fullPath"

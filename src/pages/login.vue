@@ -59,9 +59,9 @@ const login = () => {
       // 有当前激活路由，则跳转激活路由。反之跳首页
       const currentActive = store.getters.getActiveMenu;
       if (currentActive) {
-        router.replace(JSON.parse(currentActive).menuPath);
+        router.replace(JSON.parse(currentActive).microFullPath);
       } else {
-        router.replace(homePath.menuPath);
+        router.replace(homePath.microFullPath);
         store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homePath));
       }
     })

@@ -42,6 +42,7 @@ onMounted(() => {
   if (!window.qiankunStarted) {
     window.qiankunStarted = true;
     startQiankun();
+    store.commit("CHANGE_ROUTER_VIEW_LOADING", false);
   }
 });
 
