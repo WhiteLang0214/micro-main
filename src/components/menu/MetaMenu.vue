@@ -8,6 +8,7 @@
     @open="handleOpen"
     @close="handleClose"
   >
+  <div @click="angularRoute">老异常登陆</div>
     <template v-for="item in menuData" :key="item.id">
       <template v-if="item.children && item.children.length > 0">
         <el-sub-menu :index="item.id">
@@ -30,11 +31,12 @@
 import { onMounted, ref, watch } from 'vue'
 import { useStore } from 'vuex'
 import { ucMenuPc } from "@/api"
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { homePath } from "@/router";
 
 const store = useStore();
 const route = useRoute();
+const router = useRouter();
 const isCollapse = ref(false);
 const homeRoute = ref(homePath)
 
@@ -102,6 +104,10 @@ let defaultActive = ref(route.fullPath);
 
 const toggleCollapse = (val) => {
   isCollapse.value = val;
+}
+
+const angularRoute = () => {
+  router.push("/microEmbpWeb")
 }
 
 watch(

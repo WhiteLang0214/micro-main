@@ -17,7 +17,10 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">
-          登录
+          用户中心登录
+        </el-button>
+        <el-button type="default" @click="oldSubmitForm(ruleFormRef)">
+          老异常登陆
         </el-button>
         <button></button>
       </el-form-item>
@@ -29,7 +32,7 @@
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { ucLogin } from "@/api";
+import { ucLogin, oldLogin } from "@/api";
 import { homePath } from "@/router";
 
 const router = useRouter();
@@ -68,6 +71,28 @@ const login = () => {
     .catch(() => {});
 };
 
+const oldLoginFun = () => {
+  const name = ruleForm.name,
+    pwd = ruleForm.pwd;
+    oldLogin({
+      phone: name,
+      oldpwd: pwd,
+      loginType: "1"
+    })
+    .then((res) => {
+      console.log("res---", res)
+      // 有当前激活路由，则跳转激活路由。反之跳首页
+      // const currentActive = store.getters.getActiveMenu;
+      // if (currentActive) {
+      //   router.replace(JSON.parse(currentActive).microFullPath);
+      // } else {
+        router.replace(homePath.microFullPath);
+        store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homePath));
+      // }
+    })
+    .catch(() => {});
+};
+
 const submitForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid) => {
@@ -76,5 +101,14 @@ const submitForm = async (formEl) => {
     }
   });
 };
+
+const oldSubmitForm = async (formEl) => {
+  if (!formEl) return;
+  await formEl.validate((valid) => {
+    if (valid) {
+      oldLoginFun();
+    }
+  });
+}
 
 </script>
