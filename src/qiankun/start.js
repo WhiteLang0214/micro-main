@@ -6,8 +6,7 @@ const config = envConfig[ENV];
 const jsConfig = [
   config["MICRO_USER_CENTER"] + "/echarts.min.js",
   config["MICRO_EMBP_VWEB"] + "/echarts.min.js",
-  // config["MICRO_EMBP_WEB"] + "https://unpkg.com/zone.js"
-  // "https://unpkg.com/zone.js"
+  "https://unpkg.com/zone.js"
 ]
 
 export default function () {

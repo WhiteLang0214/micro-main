@@ -107,7 +107,7 @@ const toggleCollapse = (val) => {
 }
 
 const angularRoute = () => {
-  router.push("/microEmbpWeb")
+  router.push("/microEmbpWeb/login")
 }
 
 watch(
