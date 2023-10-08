@@ -9,6 +9,7 @@
     @close="handleClose"
   >
   <div @click="angularRoute">老异常登陆</div>
+  <div @click="childRoute">micro-child</div>
     <template v-for="item in menuData" :key="item.id">
       <template v-if="item.children && item.children.length > 0">
         <el-sub-menu :index="item.id">
@@ -107,7 +108,11 @@ const toggleCollapse = (val) => {
 }
 
 const angularRoute = () => {
-  router.push("/microEmbpWeb/login")
+  router.push("/microAngular/login")
+}
+
+const childRoute = () => {
+  router.push("/microChild/login")
 }
 
 watch(

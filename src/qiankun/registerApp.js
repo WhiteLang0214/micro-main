@@ -7,12 +7,12 @@ import store from "@/store";
 
 registerMicroApps(microApp, {
   beforeLoad: (app) => {
-    console.log("qiankun 微应用加载前----", app, store)
+    console.log("qiankun 微应用加载前----", app)
     store.commit("CHANGE_ROUTER_VIEW_LOADING", true)
     return Promise.resolve();
   },
   afterMount: (app) => {
-    console.log("qiankun微应用挂载后----", app)
+    console.log("qiankun微应用挂载后----", app, "app.name---", app.name)
     setTimeout(() => {
       store.commit("CHANGE_ROUTER_VIEW_LOADING", false)
     }, 2000)

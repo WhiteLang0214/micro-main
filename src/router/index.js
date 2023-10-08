@@ -52,6 +52,11 @@ const routes = [
     name: 'embpVweb渲染页面',
     component: () => import('@/pages/layout.vue'),
   },
+  {
+    path: '/microAngular/:pathMatch(.*)',
+    name: 'embpWebAngular渲染页面',
+    component: () => import('@/pages/layout.vue'),
+  },
 ]
 
 const router = createRouter({

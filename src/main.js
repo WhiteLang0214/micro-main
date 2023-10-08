@@ -13,7 +13,7 @@ import "@/assets/rem";
 import "./assets/svg";
 import store from "./store";
 import { router } from "./router";
-// import 'zone.js/dist/zone';
+import 'zone.js/dist/zone';
 import "@/qiankun/registerApp";
 import coms from "@/components";
 
