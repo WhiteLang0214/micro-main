@@ -8,8 +8,9 @@
     @open="handleOpen"
     @close="handleClose"
   >
-  <div @click="angularRoute">老异常登陆</div>
-  <div @click="childRoute">micro-child</div>
+  <div style="height: 45px;" @click="angularRoute">micro-angular</div>
+  <div style="height: 45px;" @click="childRoute">micro-child</div>
+  <div style="height: 45px;" @click="embpRoute">老异常wel/home页面</div>
     <template v-for="item in menuData" :key="item.id">
       <template v-if="item.children && item.children.length > 0">
         <el-sub-menu :index="item.id">
@@ -113,6 +114,10 @@ const angularRoute = () => {
 
 const childRoute = () => {
   router.push("/microChild/login")
+}
+
+const embpRoute = () => {
+  router.push("/microEmbpWeb/wel/home")
 }
 
 watch(

@@ -3,7 +3,7 @@ import envConfig from './config.json'// 配置子应用访问地址
 const ENV = process.env.NODE_ENV || 'development'// 使用 NODE_ENV 区分不同环境，默认值为 development
 const config = envConfig[ENV]
 // const { MICRO_Bi, MICRO_EMBP_VWEB, MICRO_USER_CENTER } = config
-const { MICRO_CHILD, MICRO_ANGULAR } = config;
+const { MICRO_CHILD, MICRO_EMBP_WEB } = config;
 import store from "@/store"
 const microAppConfig = [
   {
@@ -45,11 +45,21 @@ const microAppConfig = [
   //     echarts: window.echarts
   //   }
   // },
+  // {
+  //   name: 'microAngular', // angular子应用
+  //   entry: MICRO_ANGULAR,
+  //   container: '#microContainer',
+  //   activeRule: '/microAngular',
+  //   props: {
+  //     store,
+  //     echarts: window.echarts
+  //   }
+  // },
   {
-    name: 'microAngular', // embpWeb 老异常 angular
-    entry: MICRO_ANGULAR,
+    name: 'microEmbpWeb', // embpWeb 老异常 angular
+    entry: MICRO_EMBP_WEB,
     container: '#microContainer',
-    activeRule: '/microAngular',
+    activeRule: '/microEmbpWeb',
     props: {
       store,
       echarts: window.echarts
