@@ -17,14 +17,28 @@ let endDate = ref(new Date());
 // 存储 vuex 数据，防止刷新丢失
 const resetSessionData = () => {
   const sessionLoginInfo = sessionStorage.getItem("microMain_login_info");
-  if (sessionLoginInfo && sessionLoginInfo !== undefined) {
+  if (sessionLoginInfo && sessionLoginInfo != undefined) {
     store.replaceState(
-      Object.assign({}, store.state, JSON.parse(sessionLoginInfo))
+      Object.assign({ storeData: {} }, store.state, { storeData: JSON.parse(sessionLoginInfo)})
     );
   }
 
   addEventListener("beforeunload", () => {
-    sessionStorage.setItem("microMain_login_info", JSON.stringify(store.state));
+    sessionStorage.setItem("microMain_login_info", JSON.stringify(store.state.storeData));
+  })
+};
+
+// 老异常系统存储vuex数据
+const resetOldSysSessionData = () => {
+  const sessionLoginInfo = sessionStorage.getItem("microMain_oldSys_login_info");
+  if (sessionLoginInfo && sessionLoginInfo != undefined) {
+    store.replaceState(
+      Object.assign({ oldStoreData: {}}, store.state, { oldStoreData: JSON.parse(sessionLoginInfo) })
+    );
+  }
+
+  addEventListener("beforeunload", () => {
+    sessionStorage.setItem("microMain_oldSys_login_info", JSON.stringify(store.state.oldStoreData));
   })
 };
 
@@ -46,7 +60,8 @@ const getPageRangeTime = () => {
 }
 
 const handlePageHide = () => {
-  sessionStorage.setItem("store", JSON.stringify(store.state));
+  sessionStorage.setItem("store", JSON.stringify(store.state.storeData));
+  sessionStorage.setItem("oldStore", JSON.stringify(store.state.oldStoreData));
 }
 
 const handlePopstate = (ele) => {
@@ -94,6 +109,7 @@ const removeEvent = () => {
 
 onMounted(() => {
   resetSessionData();
+  resetOldSysSessionData();
   addEvent()
 });
 

@@ -11,7 +11,7 @@
   <div style="height: 45px;" @click="angularRoute">micro-angular</div>
   <div style="height: 45px;" @click="childRoute">micro-child</div>
   <div style="height: 45px;" @click="embpRoute">老异常wel/home页面</div>
-    <template v-for="item in menuData" :key="item.id">
+    <template v-for="item in getMenuData" :key="item.id">
       <template v-if="item.children && item.children.length > 0">
         <el-sub-menu :index="item.id">
           <template #title>
@@ -30,9 +30,9 @@
 
 <script lang="js" setup>
 
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import { useStore } from 'vuex'
-import { ucMenuPc } from "@/api"
+import { ucMenuPc, oldMenu } from "@/api"
 import { useRoute, useRouter } from 'vue-router'
 import { homePath } from "@/router";
 
@@ -43,19 +43,24 @@ const isCollapse = ref(false);
 const homeRoute = ref(homePath)
 
 let menuData = ref([homeRoute]);
+let oldMenuData = ref([]);
 const VUE_APP_MICRO_UC = process.env.VUE_APP_MICRO_UC;
 const VUE_APP_MICRO_BI = process.env.VUE_APP_MICRO_BI;
 const VUE_APP_MICRO_EMBP = process.env.VUE_APP_MICRO_EMBP;
+const VUE_APP_MICRO_ANGULAR = process.env.VUE_APP_MICRO_ANGULAR;
 
 const handleOpen = () => {};
 const handleClose = () => {};
 
-// 创建路由
+const getMenuData = computed(() => [ ...menuData.value, ...oldMenuData.value ]);
+
+// 创建用户中心菜单路由
 const createRouterPath = ({ menuPath, id }) => {
   let routerPath = "";
   const ucPath = VUE_APP_MICRO_UC + menuPath;
   const biPath = VUE_APP_MICRO_BI + '/' + menuPath;
   const embpPath = VUE_APP_MICRO_EMBP + menuPath;
+
   if (id.indexOf("UC") > -1) { // 用户中心
     routerPath = ucPath;
   } else if (id.indexOf("bi") > -1 || id.indexOf("wkf") > -1 || id.indexOf("CI") > -1) {
@@ -120,6 +125,31 @@ const embpRoute = () => {
   router.push("/microEmbpWeb/wel/home")
 }
 
+// 获取老异常的菜单
+const getOldMenu = () => {
+  console.log(VUE_APP_MICRO_ANGULAR)
+  oldMenu().then(({ data }) => {
+    store.commit("SAVE_oldSys_LOGIN_INFO", JSON.stringify(data))
+    sessionStorage.setItem("microMain_oldSys_login_info", JSON.stringify(data || {}));
+    fmtOldMenu(data.menus);
+    oldMenuData.value = data.menus;
+  })
+}
+
+// 格式化老异常菜单路由
+const fmtOldMenu = (menu = []) => {
+  menu.forEach(item => {
+    item.microModule = "embpAngular";
+    item.name = item.text;
+    if (item.path) {
+      item.microFullPath = VUE_APP_MICRO_ANGULAR + "/" + item.path;
+    }
+    if (item.children) {
+      fmtOldMenu(item.children);
+    }
+  })
+}
+
 watch(
   route, 
   () => {
@@ -129,6 +159,7 @@ watch(
 onMounted(() => {
   setTimeout(() => {
     getMenu()
+    getOldMenu()
   }, 1000)
 })
 
