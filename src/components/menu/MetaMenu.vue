@@ -142,7 +142,7 @@ const fmtOldMenu = (menu = []) => {
     item.microModule = "embpAngular";
     item.name = item.text;
     if (item.path) {
-      item.microFullPath = VUE_APP_MICRO_ANGULAR + "/" + item.path;
+      item.microFullPath = VUE_APP_MICRO_ANGULAR + "/wel/" + item.path;
       item.menuPath = item.microFullPath;
     }
     if (item.children) {
@@ -159,7 +159,8 @@ watch(
 
 onMounted(() => {
   setTimeout(() => {
-    getMenu()
+    // getMenu()
+    console.log("getMenu---", getMenu)
     getOldMenu()
   }, 1000)
 })
