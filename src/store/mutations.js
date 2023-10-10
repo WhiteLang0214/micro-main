@@ -12,7 +12,7 @@ export const mutations = {
   SAVE_ACTIVE_ROUTEMATCHED(state, val) {
     // 查找路由记录里是否有当前激活的路由，如果没有则添加进路由栈记录
     const activeRouteMatched = state.activeRouteMatched;
-    const currentActiveMenu = JSON.parse(val)
+    const currentActiveMenu = JSON.parse(val) 
     const routeFindIndex = activeRouteMatched.findIndex(i => i.menuPath === currentActiveMenu.menuPath);
     if (routeFindIndex < 0 && currentActiveMenu) {
       // 如果当前激活路由是首页，则放在数组第一个

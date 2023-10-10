@@ -143,6 +143,7 @@ const fmtOldMenu = (menu = []) => {
     item.name = item.text;
     if (item.path) {
       item.microFullPath = VUE_APP_MICRO_ANGULAR + "/" + item.path;
+      item.menuPath = item.microFullPath;
     }
     if (item.children) {
       fmtOldMenu(item.children);
