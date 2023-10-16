@@ -80,15 +80,14 @@ const oldLoginFun = () => {
       loginType: "1"
     })
     .then((res) => {
-      console.log("res---", res)
       // 有当前激活路由，则跳转激活路由。反之跳首页
-      // const currentActive = store.getters.getActiveMenu;
-      // if (currentActive) {
-      //   router.replace(JSON.parse(currentActive).microFullPath);
-      // } else {
+      const currentActive = store.getters.getActiveMenu;
+      if (currentActive) {
+        router.replace(JSON.parse(currentActive).microFullPath);
+      } else {
         router.replace(homePath.microFullPath);
         store.commit("SAVE_CURRENTACTIVEMENU", JSON.stringify(homePath));
-      // }
+      }
     })
     .catch(() => {});
 };

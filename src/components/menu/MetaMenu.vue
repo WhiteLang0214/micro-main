@@ -8,7 +8,8 @@
     @open="handleOpen"
     @close="handleClose"
   >
-  <div style="height: 45px;" @click="angularRoute">micro-angular</div>
+  <div style="height: 45px;" @click="angularRoute('/microAngular/login')">micro-angular-login</div>
+  <div style="height: 45px;" @click="angularRoute('/microAngular/about')">micro-angular-about</div>
   <div style="height: 45px;" @click="childRoute">micro-child</div>
   <div style="height: 45px;" @click="embpRoute">老异常wel/home页面</div>
     <template v-for="item in getMenuData" :key="item.id">
@@ -113,8 +114,8 @@ const toggleCollapse = (val) => {
   isCollapse.value = val;
 }
 
-const angularRoute = () => {
-  router.push("/microAngular/login")
+const angularRoute = (path) => {
+  router.push(path)
 }
 
 const childRoute = () => {

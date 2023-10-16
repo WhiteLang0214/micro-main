@@ -6,7 +6,6 @@ const config = envConfig[ENV];
 const jsConfig = [
   config["MICRO_USER_CENTER"] + "/echarts.min.js",
   config["MICRO_EMBP_VWEB"] + "/echarts.min.js",
-  "https://unpkg.com/zone.js"
 ]
 
 export default function () {
@@ -16,7 +15,6 @@ export default function () {
       experimentalStyleIsolation: true
     },
     async fetch(url, ...args) {
-      // console.log("url----", url)
       if (jsConfig.includes(url)) {
         return {
           async text() {

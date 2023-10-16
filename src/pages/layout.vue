@@ -6,7 +6,7 @@
         <MetaMenu />
       </el-aside>
       <el-main class="layout-main">
-        <MetaTabMenu />
+        <!-- <MetaTabMenu /> -->
         <div class="router-container custom-loading-svg"
           v-loading="setLoading"
           :element-loading-svg="svg"
